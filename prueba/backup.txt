@@ -1,0 +1,20 @@
+@Override
+            public File next() {
+                
+                File f = (File) items[index];
+                if (!f.isFile()){
+                    if (iter == null){
+                        iter = iter = iteratorOf(converToArray(items[index]));
+                        return items[index];
+                    }else if (iter.hasNext()){
+                        return iter.next();
+                    }else {
+                        iter = null;
+                        index++;
+                        return this.next();
+                    }
+                    
+                }else{
+                    return items[index++];
+                }
+            }
