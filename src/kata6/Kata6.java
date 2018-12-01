@@ -7,13 +7,15 @@ import java.util.Iterator;
 public class Kata6 {
 
     public static void main(String[] args) throws FileNotFoundException {
+        int count = 1;
         File file = new File("prueba");
         Iterator<File> iterator = iteratorOf(file.listFiles());                             //para los nombres
         //Iterator<Long> iterator = lengthsOf(iteratorOf(file.listFiles()));                //para los nombres y los tamaños en bytes
         //Iterator<Integer> iterator = kilobytes(lengthsOf(iteratorOf(file.listFiles())));  //para los nombres y los tamaños en kilobytes
         
         while (iterator.hasNext()){
-            System.out.println("file: " + iterator.next().getAbsolutePath());   //para los nombres
+            System.out.print(count++ + ":\t");
+            System.out.println(iterator.next().getAbsolutePath());   //para los nombres
             //System.out.println("--> size: " + iterator.next() + "B");         //para los nombres y los tamaños en bytes
             //System.out.println("--> size: " + iterator.next() + "KB");        //para los nombres y los tamaños en kilobytes   
         }
@@ -46,8 +48,7 @@ public class Kata6 {
                 System.out.print(f.getAbsolutePath() + " ");
                 return f.length();
             }
-        };
-        
+        }; 
     }
 
     private static Iterator<File> iteratorOf(File[] items){
@@ -58,8 +59,9 @@ public class Kata6 {
             public boolean hasNext() {
                 if (iter == null){
                     return (index < items.length);
-                }else return items.length > 1;
-                
+                }else {
+                    return items.length > 1;
+                }
             }
 
             @Override
@@ -76,12 +78,10 @@ public class Kata6 {
                 }else{
                     if (iter.hasNext()){
                         File auxFile = iter.next();
-                        if (!iter.hasNext()){
-                            iter = null;
-                        }
+                        if (!iter.hasNext()) iter = null;
                         return auxFile;
                     }else {
-                        iter = null;;
+                        iter = null;
                         return this.next();
                     }
                 }
@@ -90,11 +90,11 @@ public class Kata6 {
     }
     
     private static void printLines(int i, char c){
-            int index = i;
-            while(index > 0){
-                System.out.print(c);
-                index--;
-            }
+        int index = i;
+        while(index > 0){
+            System.out.print(c);
+            index--;
         }
+    }
     
 }
