@@ -87,14 +87,5 @@ public class Kata6 {
                 }
             }
         };
-    }
-    
-    private static void printLines(int i, char c){
-        int index = i;
-        while(index > 0){
-            System.out.print(c);
-            index--;
-        }
-    }
-    
+    }    
 }
